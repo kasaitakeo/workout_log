@@ -20,7 +20,7 @@ class TweetsController extends Controller
         // それぞれのModelにデータを渡していきます
         $user = auth()->user();
         $follow_ids = $follower->followingIds($user->id);
-        // followed_idだけ抜き出す
+        // followed_idだけ抜き出す following_idは自分のidでいらないから
         $following_ids = $follow_ids->pluck('followed_id')->toArray();
 
         $timelines = $tweet->getTimelines($user->id, $following_ids);

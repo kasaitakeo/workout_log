@@ -13,6 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        // 新しいデータベーステーブルを作成するには、Schemaファサードのcreateメソッドを使用
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             // unique()重複した値を格納できなくなる

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\softDeletes;
 class Tweet extends Model
 {
     //
+    // SoftDeleteという論理削除（削除してもDBには残るがシステム上削除したとみなす機能）を使える様に設定
     use SoftDeletes;
 
     /**
@@ -17,6 +18,7 @@ class Tweet extends Model
      *
      * @var array
      */
+    // $fillableはLaravelで用意されているメンバ変数です。$fillableにカラム名を定義するとそれ以外のカラムを登録/更新でエラーを吐きます。つまりホワイトリストですね。逆に$guardedというのはブラックリストで登録/更新できないカラムを指定します。基本的にはどちらでも可です
     protected $fillable = [
         'text'
     ];
@@ -25,13 +27,14 @@ class Tweet extends Model
     {
         // Eloquentリレーション
         // hasOneと同じ１対１の関係(ユーザーと個人情報など）
+        // リレーションメソッド名＋_idのサフィックスをつけたものをデフォルトの外部キーにしているため、外部キーが異なる場合はメソッドの第２引数にカスタムキー名を渡す必要がある
         return $this->belongsTo(User::class);
     }
 
     public function favorites()
     {
         // １対多の場合
-        // メソッド名が複数形になるのがポイント
+        // メソッド名が複数形(favorites())になるのがポイント
         // Eloquentのコレクションという形でアクセスできる
         return $this->hasMany(Favorite::class);
     }
@@ -41,6 +44,7 @@ class Tweet extends Model
         return $this->hasMany(Comment::class);
     }
 
+    // 自分のタイムラインのみ？
     public function getUserTimeLine(Int $user_id)
     {
         return $this->where('user_id', $user_id)->orderBy('created_at', 'DESC')->paginate(50);
@@ -57,6 +61,8 @@ class Tweet extends Model
     {
         // 自身とフォローしているユーザIDを結合する
         $follow_ids[] = $user_id;
+        // 降順でソートする場合には DESC 
+        // whereInメソッドはカラムの値('user_id')のなかに指定した配列($follow_ids)が含まれている条件を加えます→つまりユーザーがフォローしている人のツイートのみ取ってくる
         return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
 

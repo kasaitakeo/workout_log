@@ -18,11 +18,12 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     // ユーザを取得するgetAllUsers()というメソッドにログインしているユーザIDを引数で渡しています。Modelから返ってきた結果をViewに返します。
-    // メソッドインジェクション -> index()の引数はどこから来たの？？って思うかもしれません。LaravelにはDI（依存性の注入）というのが内蔵されており、メソッドの引数にインジェクトしたいオブジェクトを書くだけで、そのインスタンスが使用できます $user = new User;の様にわざわざインスタンスを発行する必要がなく、Userクラスに依存されないということです。
+    // index()の引数はDI（依存性の注入）というのlaravelの機能により、メソッドの引数にインジェクトしたいオブジェクトを書くだけで、そのインスタンス（Model）が使用できる。 $user = new User;の様にわざわざインスタンスを発行する必要がなく、Userクラスに依存されないということです。
     public function index(User $user)
     {
         // ModelにgetAllUsersメソッドを書く
         // getAllUsersメソッド使用するのに$user = new User;書かなくてオッケ DI（依存性の注入）
+        // auth()->user()->idでログインしているユーザーのID
         $all_users = $user->getAllUsers(auth()->user()->id);
 
         return view('users.index', [

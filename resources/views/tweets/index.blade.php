@@ -8,6 +8,7 @@
         </div>
         @if (isset($timelines))
             @foreach ($timelines as $timeline)
+                <!-- 作成順でフォローしてる人のツイート -->
                 <div class="col-md-8 mb-3">
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
@@ -21,6 +22,7 @@
                             </div>
                         </div>
                         <div class="card-body">
+                            <!-- e() でエスケープをする、nl2br()で改行を<br>に置き換える、{!! !!}で、<br>だけエスケープをせずに表示する -->
                             {!! nl2br(e($timeline->text)) !!}
                         </div>
                         <div class="card-footer py-1 d-flex justify-content-end bg-white">

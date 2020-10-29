@@ -18,7 +18,8 @@ class CreateTweetsTable extends Migration
             // unsignedInteger符号なしINTカラム
             $table->unsignedInteger('user_id')->comment('ユーザID');
             $table->string('text')->comment('本文');
-            // ソフトデリートのためにNULL値可能で有効（全体）桁数指定のdeleted_at TIMESTAMPカラム追加
+            // ソフトデリート（論理削除）のためにNULL値可能で有効（全体）桁数指定のdeleted_at TIMESTAMPカラム追加
+            // モデルのTweetではSoftDeleteという論理削除（削除してもDBには残るがシステム上削除したとみなす機能）を使える様に設定
             $table->softDeletes();
             $table->timestamps();
 
