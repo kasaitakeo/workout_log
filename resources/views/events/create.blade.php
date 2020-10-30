@@ -8,7 +8,7 @@
                 <div class="card-header">Create</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('tweets.store') }}">
+                    <form method="POST" action="{{ route('events.store') }}">
                         @csrf
 
                         <div class="form-group row mb-0">
@@ -19,29 +19,34 @@
                                     <a href="{{ url('users/' .$user->id) }}" class="text-secondary">{{ $user->screen_name }}</a>
                                 </div>
                                 <div class="ml-4 d-flex flex-column">
-                                    <select name="example">
-                                    <option value="サンプル1">サンプル1</option>
-                                    <option value="サンプル2">サンプル2</option>
-                                    <option value="サンプル3">サンプル3</option>
+                                    <label>部位
+                                    <select name="part">
+                                    <option value="胸">胸</option>
+                                    <option value="背中">背中</option>
+                                    <option value="肩">肩</option>
+                                    <option value="脚">脚</option>
+                                    <option value="上腕二頭筋">上腕二頭筋</option>
+                                    <option value="上腕三頭筋">上腕三頭筋</option>
+                                    <option value="腹筋">腹筋</option>
                                     </select>
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <textarea class="form-control @error('text') is-invalid @enderror" name="text" required autocomplete="text" rows="4">{{ old('text') }}</textarea>
-
-                                @error('text')
+                                <p><label>種目名：<input type="text" name="event_name" size="40" maxlength="20"></label></p>
+                                <!-- @error('text')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                @enderror -->
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-12 text-right">
-                                <p class="mb-4 text-danger">140文字以内</p>
+                                <p class="mb-4 text-danger">30文字以内</p>
                                 <button type="submit" class="btn btn-primary">
-                                    ツイートする
+                                    登録する
                                 </button>
                             </div>
                         </div>

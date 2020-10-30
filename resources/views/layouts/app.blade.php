@@ -11,6 +11,8 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
+        <!-- font awesome -->
+        <script src="https://kit.fontawesome.com/654d3c314d.js" crossorigin="anonymous"></script>
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -26,7 +28,9 @@
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
+                        <i class="fas fa-hamburger"></i>
                         {{ config('app.name', 'トレログ') }}
+                        <i class="fas fa-hamburger"></i>
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
@@ -52,8 +56,15 @@
                                 @endif
                             @else
                             <!-- 投稿 -->
-                                <li class="nav-item mr-5">
+                            <ul class="nav justify-content-center">
+                                <li class="nav-item mr-3">
                                     <a href="{{ url('tweets/create') }}" class="btn btn-md btn-primary">ツイートする</a>
+                                </li>
+                                <li class="nav-item mr-3">
+                                    <a href="{{ url('events') }}" class="btn btn-md btn-success">トレログする</a>
+                                </li>
+                                <li class="nav-item mr-3">
+                                    <a href="{{ url('tweets') }}" class="btn btn-md btn-secondary" >投稿一覧</a>
                                 </li>
                                 <li class="nav-item">
                                     <img src="{{ asset('storage/profile_image/' .auth()->user()->profile_image) }}" class="rounded-circle" width="50" height="50">
@@ -76,6 +87,7 @@
                                         </form>
                                     </div>
                                 </li>
+                            </ul>    
                             @endguest
                         </ul>
                     </div>
