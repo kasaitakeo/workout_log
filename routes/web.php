@@ -60,6 +60,9 @@ Route::group(['middleware' => 'auth'], function() {
     
     // 筋トレ種目関連
     Route::resource('events', 'EventsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+    // Route::post('tweets/{user}/eventtweet', 'tweetsController@event_tweet')->name('eventtweet');
+    // Route::post('tweets/{event_name}/eventtweet', 'tweetsController@event_tweet')->name('eventtweet');
+    Route::post('tweets/eventtweet', 'tweetsController@event_tweet')->name('eventtweet');
 
     // コメント関連
     Route::resource('comments', 'CommentsController', ['only' => ['store']]);

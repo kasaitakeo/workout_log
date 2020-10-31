@@ -15,9 +15,11 @@ class EventsController extends Controller
     public function index(Event $event)
     {
         //
+        $user = auth()->user();
         $all_events = $event->getAllEvents(auth()->user()->id);
 
         return view('events.index', [
+            'user' => $user,
             'all_events'  => $all_events
         ]);
     }

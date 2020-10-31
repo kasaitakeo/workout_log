@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Tweet;
 use App\Models\Comment;
 use App\Models\Follower;
+use App\Models\Event;
 
 class TweetsController extends Controller
 {
@@ -42,7 +43,40 @@ class TweetsController extends Controller
         $user = auth()->user();
 
         return view('tweets.create', [
-            'user' => $user
+            'user' => $user,
+        ]);
+    }
+
+    // ツイート投稿機能
+    // public function event_tweet(Request $request, Event $event)
+    // {
+    //     $user = auth()->user();
+    //     $data = $request->all();
+
+    //     $event_ids = $data['events'];
+    //     $event_datas = $event->getEvents($event_ids);
+        
+    //     // dd($event_datas);
+    //     return view('tweets.create', [
+    //         'user' => $user,
+    //         'event_datas' => compact('event_datas')
+    //     ]);
+    // }
+    // ツイート投稿機能
+    public function event_tweet(Request $request, Event $event)
+    {
+        $user = auth()->user();
+        $data = $request->all();
+
+        $event_ids = $data['events'];
+        // dd($event_ids);
+        foreach ($event_ids as $event_id) {
+            $event_datas[] = $event->getEvents($event_id);
+        }
+        // dd($event_datas);
+        return view('tweets.create', [
+            'user' => $user,
+            'event_datas' => $event_datas
         ]);
     }
 
