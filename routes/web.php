@@ -62,7 +62,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('events', 'EventsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
     // Route::post('tweets/{user}/eventtweet', 'tweetsController@event_tweet')->name('eventtweet');
     // Route::post('tweets/{event_name}/eventtweet', 'tweetsController@event_tweet')->name('eventtweet');
-    Route::post('tweets/eventtweet', 'tweetsController@event_tweet')->name('eventtweet');
+    Route::post('event_select', 'eventsController@event_select')->name('event_select');
+    // Route::post('tweets/eventsession', 'tweetsController@event_sesssion')->name('eventsession');
+    Route::get('sessions', 'SessionsController@index');
+    Route::post('sessions', 'SessionsController@store');
+    Route::get('sessions/delete', 'SessionsController@destroy');
+    // Route::resource('sessions', 'SessionsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
 
     // コメント関連
     Route::resource('comments', 'CommentsController', ['only' => ['store']]);

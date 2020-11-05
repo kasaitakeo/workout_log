@@ -93,11 +93,13 @@ class TweetsController extends Controller
         $user = auth()->user();
         $data = $request->all();
         $validator = Validator::make($data, [
-            'text' => ['required', 'string', 'max:140']
+            'text' => ['required', 'string', 'max:300']
         ]);
 
         $validator->validate();
         $tweet->tweetStore($user->id, $data);
+
+        $request->session()->flush();
 
         return redirect('tweets');
     }
