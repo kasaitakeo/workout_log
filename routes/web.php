@@ -14,10 +14,10 @@
 
 // Route::get('指定したルートのURI', '実行するメソッド');
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', 'HomeController@index')->name('home');
 // コントローラのコンストラクタで、middlewareメソッドを使い、コントローラのアクションに対するミドルウェアを簡単に指定できます。グループ中の全ルートにミドルウェアを指定するには、そのグループを定義する前にmiddlewareメソッドを使用します
 // 'prefix' => 'contactでフォルダを指定することができ、頭につくcontact省略できる。'middleware' => 'auth'で認証機能 コールバックファンクションに通常のルーティングかく
 Route::group(['prefix' => 'contact', 'middleware' => 'auth'], function(){

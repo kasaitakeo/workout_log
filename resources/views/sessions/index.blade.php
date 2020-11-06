@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Create</div>
                     <div class="card-body">
@@ -62,7 +62,7 @@
                                                     <ul>
                                                         <li>重量：
                                                         <select name="weight">
-                                                        @for ($i = 0; $i < 201; $i = $i + 5)
+                                                        @for ($i = 0; $i < 201; $i = $i + 2)
                                                             @if ($i === 50) {
                                                                 <option value="{{ $i }}" selected>{{ $i }}KG</option>
                                                                 @continue;
@@ -109,7 +109,7 @@
                                                     <ul>
                                                         <li>重量：
                                                         <select name="weight">
-                                                        @for ($i = 0; $i < 201; $i = $i + 5)
+                                                        @for ($i = 0; $i < 201; $i = $i + 2)
                                                             @if ($i === 50) {
                                                                 <option value="{{ $i }}" selected>{{ $i }}KG</option>
                                                                 @continue;
@@ -156,7 +156,7 @@
                                                     <ul>
                                                         <li>重量：
                                                         <select name="weight">
-                                                        @for ($i = 0; $i < 201; $i = $i + 5)
+                                                        @for ($i = 0; $i < 201; $i = $i + 2)
                                                             @if ($i === 50) {
                                                                 <option value="{{ $i }}" selected>{{ $i }}KG</option>
                                                                 @continue;
@@ -203,7 +203,7 @@
                                                         <ul>
                                                             <li>重量：
                                                             <select name="weight">
-                                                            @for ($i = 0; $i < 201; $i = $i + 5)
+                                                            @for ($i = 0; $i < 201; $i = $i + 2)
                                                                 @if ($i === 50) {
                                                                     <option value="{{ $i }}" selected>{{ $i }}KG</option>
                                                                     @continue;
@@ -250,7 +250,7 @@
                                                         <ul>
                                                             <li>重量：
                                                             <select name="weight">
-                                                            @for ($i = 0; $i < 201; $i = $i + 5)
+                                                            @for ($i = 0; $i < 201; $i = $i + 2)
                                                                 @if ($i === 50) {
                                                                     <option value="{{ $i }}" selected>{{ $i }}KG</option>
                                                                     @continue;
@@ -297,7 +297,7 @@
                                                         <ul>
                                                             <li>重量：
                                                             <select name="weight">
-                                                            @for ($i = 0; $i < 201; $i = $i + 5)
+                                                            @for ($i = 0; $i < 201; $i = $i + 2)
                                                                 @if ($i === 50) {
                                                                     <option value="{{ $i }}" selected>{{ $i }}KG</option>
                                                                     @continue;
@@ -344,7 +344,7 @@
                                                         <ul>
                                                             <li>重量：
                                                             <select name="weight">
-                                                            @for ($i = 0; $i < 201; $i = $i + 5)
+                                                            @for ($i = 0; $i < 201; $i = $i + 2)
                                                                 @if ($i === 50) {
                                                                     <option value="{{ $i }}" selected>{{ $i }}KG</option>
                                                                     @continue;
@@ -391,7 +391,7 @@
                                                         <ul>
                                                             <li>重量：
                                                             <select name="weight">
-                                                            @for ($i = 0; $i < 201; $i = $i + 5)
+                                                            @for ($i = 0; $i < 201; $i = $i + 2)
                                                                 @if ($i === 50) {
                                                                     <option value="{{ $i }}" selected>{{ $i }}KG</option>
                                                                     @continue;
@@ -428,16 +428,16 @@
                                                     </br>
                                                 @endforeach
                                         @endif
-                                        <p><a href="sessions/delete">破棄する</a></p>
                                     @else
                                         <p>実施するトレーニングを入力してください。</p>
+                                        <a href="events"class="btn btn-danger" href="#" role="button">種目選択に戻る</a>
                                     @endif
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 @if (Session::has('play_datas'))
                                     @foreach (Session::get('play_datas') as $play_data)
-                                        <?php $datas[] = '種目名:' . (string)$play_data['event_name'] . '→' .  (string)$play_data['weight'] . 'kg ' . (string)$play_data['rep'] . 'rep ' . (string)$play_data['set'] . 'set'; ?>
+                                        <?php $datas[] = (string)$play_data['event_name'] . '→' .  (string)$play_data['weight'] . 'kg ' . (string)$play_data['rep'] . 'rep ' . (string)$play_data['set'] . 'set'; ?>
                                     @endforeach
                                     <form method="POST" action="{{ route('tweets.store') }}">
                                         @csrf
@@ -449,7 +449,10 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                        <button type="submit" class="btn btn-primary">追加する</button>
+                                        <button type="submit" class="btn btn-success">トレログする</button>
+                                        <!-- <p><a href="sessions/delete">破棄する</a></p> -->
+                                        <a href="sessions/delete"class="btn btn-danger" href="#" role="button">追加内容を破棄する</a>
+                                        <!-- <button type="submit" class="btn btn-danger"><a href="sessions/delete"class="btn btn-primary" href="#" role="button">追加内容を破棄する</a></button> -->
                                     </form>
                                 @endif
                             </div>

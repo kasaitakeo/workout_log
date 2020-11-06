@@ -99,7 +99,9 @@ class TweetsController extends Controller
         $validator->validate();
         $tweet->tweetStore($user->id, $data);
 
-        $request->session()->flush();
+        // $request->session()->flush();
+        $request->session()->forget('event_datas');
+        $request->session()->forget('play_datas');
 
         return redirect('tweets');
     }

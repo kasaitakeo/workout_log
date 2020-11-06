@@ -34,11 +34,6 @@
                             </div>
                             <div class="col-md-12">
                                 <p><label>種目名：<input type="text" name="event_name" size="40" maxlength="20"></label></p>
-                                <!-- @error('text')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror -->
                             </div>
                         </div>
 

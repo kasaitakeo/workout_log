@@ -117,8 +117,11 @@ class SessionsController extends Controller
     public function destroy(Request $request)
     {
         //
-        $request->session()->flush();
-        return view('users/index');
+        // $request->session()->flush();
+        // $request->session()->forget('event_datas');
+        $request->session()->forget('play_datas');
+        // return view('users/index');
+        return back();
     }
 
 }

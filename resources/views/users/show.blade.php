@@ -42,15 +42,15 @@
                         </div>
                         <div class="d-flex justify-content-end">
                             <div class="p-2 d-flex flex-column align-items-center">
-                                <p class="font-weight-bold">ツイート数</p>
+                                <p class="font-weight-bold">投稿</p>
                                 <span>{{ $tweet_count }}</span>
                             </div>
                             <div class="p-2 d-flex flex-column align-items-center">
-                                <p class="font-weight-bold">フォロー数</p>
+                                <p class="font-weight-bold">フォロー</p>
                                 <span>{{ $follow_count }}</span>
                             </div>
                             <div class="p-2 d-flex flex-column align-items-center">
-                                <p class="font-weight-bold">フォロワー数</p>
+                                <p class="font-weight-bold">フォロワー</p>
                                 <span>{{ $follower_count }}</span>
                             </div>
                         </div>
