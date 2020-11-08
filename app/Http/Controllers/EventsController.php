@@ -140,8 +140,8 @@ class EventsController extends Controller
      */
     public function destroy(Event $event)
     {
-        // $user = auth()->user();
-        $event->eventDestroy($event->id);
+        $user = auth()->user();
+        $event->eventDestroy($user->id, $event->id);
 
         return back();
     }

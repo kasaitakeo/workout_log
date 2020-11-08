@@ -52,4 +52,9 @@ class Event extends Model
         return $this->Where('id',  $event_ids)->first();
     }
 
+    public function eventDestroy(Int $user_id, Int $event_id)
+    {
+        return $this->where('user_id', $user_id)->where('id', $event_id)->delete();
+    }
+
 }
