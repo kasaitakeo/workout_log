@@ -15,7 +15,6 @@
                         <div class="card">
                             <div class="card-haeder p-3 w-100 d-flex">
                                 <div class="ml-2 d-flex flex-column">
-                                    <!-- <input type="checkbox" id="{{ $event->event_name }}" name="event_name" value="{{ $event->id }}"><label class="mb-0" for="{{ $event->event_name }}">{{ $event->part }} : {{ $event->event_name }}</label> -->
                                     <label for="enent_name">{{ $event->part }} : {{ $event->event_name }}
                                     <input type="checkbox" name="events[]" value="{{ $event->id }}" id="event_name">
                                     </label>
