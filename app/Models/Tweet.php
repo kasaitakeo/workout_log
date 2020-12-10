@@ -11,7 +11,7 @@ class Tweet extends Model
 {
     //
     // SoftDeleteという論理削除（削除してもDBには残るがシステム上削除したとみなす機能）を使える様に設定
-    use SoftDeletes;
+    // use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -61,7 +61,7 @@ class Tweet extends Model
     {
         // 自身とフォローしているユーザIDを結合する
         $follow_ids[] = $user_id;
-        // 降順でソートする場合には DESC 
+        // 降順でソートする場合には DESC
         // whereInメソッドはカラムの値('user_id')のなかに指定した配列($follow_ids)が含まれている条件を加えます→つまりユーザーがフォローしている人のツイートのみ取ってくる
         return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
