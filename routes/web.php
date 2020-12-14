@@ -58,7 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // 筋トレ種目関連
     Route::resource('events', 'EventsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
-    Route::post('event_select', 'eventsController@event_select')->name('event_select');
+    Route::post('event_select', 'EventsController@event_select')->name('event_select');
     Route::get('sessions', 'SessionsController@index');
     Route::post('sessions', 'SessionsController@store');
     Route::get('sessions/delete', 'SessionsController@destroy');
