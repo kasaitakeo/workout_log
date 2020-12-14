@@ -70,9 +70,9 @@ class EventsController extends Controller
             $event_ids = $data['events'];
             // dd($event_ids);
             foreach ($event_ids as $event_id) {
-    
+
                 $event_datas[] = $event->getEvents($event_id);
-    
+
                 // dd($event_datas);
                 // foreach ($event_datas as $event_data) {
                 //     $event_names[] = $event_data->event_name;
@@ -82,17 +82,19 @@ class EventsController extends Controller
                 // $event_datas = null;
                 $request->session()->put('event_datas', $event_datas);
                 // dd($event_datas);
-        
+
                 // $request->session()->put('event_names', $event_names);
                 // $request->session()->put('event_parts', $event_parts);
                 // $product = array(1,2,3,4);
                 // Session::Push('cart', $product);
-        
-                return view('sessions.index', [
-                    'user' => $user,
-                    // 'event_datas' => $event_datas
-                ]);
+
             }
+
+            return view('sessions.index', [
+                'user' => $user,
+                // 'event_datas' => $event_datas
+            ]);
+
         } else {
             return back();
         }

@@ -1,6 +1,5 @@
 <?php
 
-// まずルーティング設定→
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +19,7 @@
 Route::get('/', 'HomeController@index')->name('home');
 // コントローラのコンストラクタで、middlewareメソッドを使い、コントローラのアクションに対するミドルウェアを簡単に指定できます。グループ中の全ルートにミドルウェアを指定するには、そのグループを定義する前にmiddlewareメソッドを使用します
 // 'prefix' => 'contactでフォルダを指定することができ、頭につくcontact省略できる。'middleware' => 'auth'で認証機能 コールバックファンクションに通常のルーティングかく
-Route::group(['prefix' => 'contact', 'middleware' => 'auth'], function(){
+Route::group(['prefix' => 'contact', 'middleware' => 'auth'], function () {
     // ->name('contact.index')を使用することで名前がつきviewが書きやすくなる
     Route::get('index', 'ContactFormController@index')->name('contact.index');
     Route::get('create', 'ContactFormController@create')->name('contact.create');
@@ -29,7 +28,6 @@ Route::group(['prefix' => 'contact', 'middleware' => 'auth'], function(){
     Route::get('edit/{id}', 'ContactFormController@edit')->name('contact.edit');
     Route::post('update/{id}', 'ContactFormController@update')->name('contact.update');
     Route::post('destroy/{id}', 'ContactFormController@destroy')->name('contact.destroy');
-
 });
 
 // Route::resource('contacts', 'ContactFormController')->only([
@@ -44,7 +42,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // ログイン状態
 // このクロージャーの中にルートを設定することでログインした時にしかアクセス出来ないようにします。
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'auth'], function () {
 
     // ユーザ関連
     // ResourceControllerにすることでシステムが自動的にそれぞれのアクションに紐づけてくれる
@@ -57,17 +55,13 @@ Route::group(['middleware' => 'auth'], function() {
 
     // ツイート関連
     Route::resource('tweets', 'TweetsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
-    
+
     // 筋トレ種目関連
     Route::resource('events', 'EventsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
-    // Route::post('tweets/{user}/eventtweet', 'tweetsController@event_tweet')->name('eventtweet');
-    // Route::post('tweets/{event_name}/eventtweet', 'tweetsController@event_tweet')->name('eventtweet');
     Route::post('event_select', 'eventsController@event_select')->name('event_select');
-    // Route::post('tweets/eventsession', 'tweetsController@event_sesssion')->name('eventsession');
     Route::get('sessions', 'SessionsController@index');
     Route::post('sessions', 'SessionsController@store');
     Route::get('sessions/delete', 'SessionsController@destroy');
-    // Route::resource('sessions', 'SessionsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
 
     // コメント関連
     Route::resource('comments', 'CommentsController', ['only' => ['store']]);
