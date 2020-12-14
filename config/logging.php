@@ -53,6 +53,16 @@ return [
             'days' => 14,
         ],
 
+        // logファイルの権限が変わらないとき
+        // php_sapi_name() はコマンドラインで実行されているときは ‘cli’ を返しますので、artisan が出力するログファイルは laravel-cli-2018-11-28.log のようになります
+        // 'daily' => [
+        //     'driver' => 'daily',
+        //     'path' => storage_path('logs/laravel'.php_sapi_name().'.log'),
+        //     'level' => 'debug',
+        //     'days' => 14,
+        // ],
+
+
         'slack' => [
             'driver' => 'slack',
             'url' => env('LOG_SLACK_WEBHOOK_URL'),

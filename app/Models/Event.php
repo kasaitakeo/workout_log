@@ -9,7 +9,7 @@ class Event extends Model
 {
     //
     // SoftDeleteという論理削除（削除してもDBには残るがシステム上削除したとみなす機能）を使える様に設定
-    use SoftDeletes;
+    // use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -27,7 +27,7 @@ class Event extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
+
     public function getAllEvents(Int $user_id)
     {
         // return $this->Where('user_id',  $user_id)->pluck('event_name');
