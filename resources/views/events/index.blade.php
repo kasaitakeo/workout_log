@@ -7,7 +7,7 @@
                 <div class="col-md-12 text-center">
                     <a href="{{ url('events/create') }}" class="btn btn-outline-success">種目を追加する</a>
                 </div>
-                
+
                 @if (isset($all_events))
                     <form method="POST" action="{{ route('event_select') }}">
                     @csrf
@@ -18,14 +18,7 @@
                                     <label for="enent_name">{{ $event->part }} : {{ $event->event_name }}
                                     <input type="checkbox" name="events[]" value="{{ $event->id }}" id="event_name">
                                     </label>
-                                    <a href="{{ url('events/' .$event->id .'/destroy') }}" class="dropdown-item">編集</a>
-                                    <!-- <form method="POST" action="{{ url('events/' .$event->id) }}" class="mb-0">
-                                        @csrf
-                                        @method('DELETE')
-
-                                        <input type="hidden" value="{{ $event->id }}">
-                                        <button type="submit" class="btn btn-success btn-sm">削除</button>
-                                    </form>  -->
+                                    <a href="{{ url('events/' .$event->id) }}" class="dropdown-item">編集</a>
                                 </div>
                             </div>
                         </div>
@@ -40,6 +33,6 @@
                     </form>
                 @endif
             </div>
-        </div>        
+        </div>
     </div>
 @endsection

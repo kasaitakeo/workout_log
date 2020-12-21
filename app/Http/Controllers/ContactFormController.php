@@ -5,14 +5,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 // ContactFormをインスタンス化し、storeでDBに保存するためにModelsフォルダを呼び出す
 use App\Models\ContactForm;
-
 use Illuminate\Support\Facades\DB;
-
 use App\Services\CheckFormData;
-
 // php artisan make:request StoreContactFormで作成したバリデーションファイル
 use App\Http\Requests\StoreContactForm;
 

@@ -109,6 +109,9 @@ class EventsController extends Controller
     public function show($id)
     {
         //
+        $event = Event::find($id);
+
+        return view('events.show', compact('event'));
     }
 
     /**
@@ -117,9 +120,20 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function edit(Request $request)
+    // {
+    //     //
+    //     $id = $request->get('id');
+    //     $event = Event::find($id);
+
+    //     return view('events.edit', compact('event'));
+    // }
     public function edit($id)
     {
         //
+        $event = Event::find($id);
+
+        return view('events.edit', compact('event'));
     }
 
     /**
@@ -132,6 +146,14 @@ class EventsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $event = Event::find($id);
+
+        $event->part = $request->input('part');
+        $event->event_name = $request->input('event_name');
+
+        $event->save();
+
+        return redirect('events');
     }
 
     /**
