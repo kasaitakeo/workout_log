@@ -60,46 +60,7 @@ class EventsController extends Controller
         return redirect('events');
     }
 
-    public function event_select(Request $request, Event $event)
-    {
-        $user = auth()->user();
-        $data = $request->all();
-        // dd($data);
-
-        if (isset($data['events'])) {
-            $event_ids = $data['events'];
-            // dd($event_ids);
-            foreach ($event_ids as $event_id) {
-
-                $event_datas[] = $event->getEvents($event_id);
-
-                // dd($event_datas);
-                // foreach ($event_datas as $event_data) {
-                //     $event_names[] = $event_data->event_name;
-                //     $event_parts[] = $event_data->part;
-                // }
-                // 重複しないよう初期化 $event_datas[]にもともと入っていた$event_idも一緒にforeachしてしまう
-                // $event_datas = null;
-                $request->session()->put('event_datas', $event_datas);
-                // dd($event_datas);
-
-                // $request->session()->put('event_names', $event_names);
-                // $request->session()->put('event_parts', $event_parts);
-                // $product = array(1,2,3,4);
-                // Session::Push('cart', $product);
-
-            }
-
-            return view('sessions.index', [
-                'user' => $user,
-                // 'event_datas' => $event_datas
-            ]);
-
-        } else {
-            return back();
-        }
-    }
-
+    
     /**
      * Display the specified resource.
      *
@@ -110,10 +71,10 @@ class EventsController extends Controller
     {
         //
         $event = Event::find($id);
-
+        
         return view('events.show', compact('event'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -122,20 +83,20 @@ class EventsController extends Controller
      */
     // public function edit(Request $request)
     // {
-    //     //
-    //     $id = $request->get('id');
-    //     $event = Event::find($id);
-
-    //     return view('events.edit', compact('event'));
-    // }
-    public function edit($id)
-    {
-        //
-        $event = Event::find($id);
-
-        return view('events.edit', compact('event'));
+        //     //
+        //     $id = $request->get('id');
+        //     $event = Event::find($id);
+        
+        //     return view('events.edit', compact('event'));
+        // }
+        public function edit($id)
+        {
+            //
+            $event = Event::find($id);
+            
+            return view('events.edit', compact('event'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -147,16 +108,16 @@ class EventsController extends Controller
     {
         //
         $event = Event::find($id);
-
+        
         $event->part = $request->input('part');
-
+        
         $event->event_name = $request->input('event_name');
-
+        
         $event->save();
-
+        
         return redirect('events');
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -166,10 +127,59 @@ class EventsController extends Controller
     public function destroy($id)
     {
         $event = Event::find($id);
-
+        
         $event->delete();
-
+        
         return redirect('events');      
     }
+    
+    /**
+     * 
+     * 
+     * @param array $request
+     * @return 
+     */
+    public function event_select(Request $request, Event $event)
+    {
+        // 変数名わかりづらい
+        $user = auth()->user();
+        $data = $request->all();
+        // dd($data);
 
+        if (isset($data['events'])) {
+            $event_ids = $data['events'];
+            // dd($event_ids);
+
+            foreach ($event_ids as $event_id) {
+
+                // $event_datas[] = $event->getEvents($event_id);
+                $event_datas[] = $event->where('id', $event_id)->first();
+
+                // dd($event_datas);
+                // foreach ($event_datas as $event_data) {
+                //     $event_names[] = $event_data->event_name;
+                //     $event_parts[] = $event_data->part;
+                // }
+                // 重複しないよう初期化 $event_datas[]にもともと入っていた$event_idも一緒にforeachしてしまう
+                // $event_datas = null;
+                $request->session()->put('event_datas', $event_datas);
+                // dd($event_datas);
+                
+                // $request->session()->put('event_names', $event_names);
+                // $request->session()->put('event_parts', $event_parts);
+                // $product = array(1,2,3,4);
+                // Session::Push('cart', $product);
+                
+            }
+            // dd($event_datas);
+
+            return view('sessions.index', [
+                'user' => $user,
+                // 'event_datas' => $event_datas
+            ]);
+
+        } else {
+            return back();
+        }
+    }
 }

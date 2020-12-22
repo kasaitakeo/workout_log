@@ -93,7 +93,7 @@ class TweetsController extends Controller
         $user = auth()->user();
         $data = $request->all();
         $validator = Validator::make($data, [
-            'text' => ['required', 'string', 'max:300']
+            'text' => ['required', 'string', 'max:500']
         ]);
 
         $validator->validate();

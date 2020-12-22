@@ -14,10 +14,8 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-// コントローラのコンストラクタで、middlewareメソッドを使い、コントローラのアクションに対するミドルウェアを簡単に指定できます。グループ中の全ルートにミドルウェアを指定するには、そのグループを定義する前にmiddlewareメソッドを使用します
-// 'prefix' => 'contactでフォルダを指定することができ、頭につくcontact省略できる。'middleware' => 'auth'で認証機能 コールバックファンクションに通常のルーティングかく
+
 Route::group(['prefix' => 'contact', 'middleware' => 'auth'], function () {
-    // ->name('contact.index')を使用することで名前がつきviewが書きやすくなる
     Route::get('index', 'ContactFormController@index')->name('contact.index');
     Route::get('create', 'ContactFormController@create')->name('contact.create');
     Route::post('store', 'ContactFormController@store')->name('contact.store');
@@ -30,8 +28,6 @@ Route::group(['prefix' => 'contact', 'middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
 
     // ユーザ関連
-    // ResourceControllerにすることでシステムが自動的にそれぞれのアクションに紐づけてくれる
-    // ユーザ機能では一覧/詳細/編集/更新のみを使用するので第３引数にonlyと記述して使うアクションのみを設定
     Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
 
     // フォロー/フォロー解除を追加
@@ -44,6 +40,8 @@ Route::group(['middleware' => 'auth'], function () {
     // 筋トレ種目関連
     Route::resource('events', 'EventsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
     Route::post('event_select', 'EventsController@event_select')->name('event_select');
+
+    // トレログ使用時のsession関係
     Route::get('sessions', 'SessionsController@index');
     Route::post('sessions', 'SessionsController@store');
     Route::get('sessions/delete', 'SessionsController@destroy');
@@ -52,6 +50,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('comments', 'CommentsController', ['only' => ['store']]);
 
     // いいね関連
-    // いいね機能では保存のstoreと削除のdestroyを設定
     Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
 });

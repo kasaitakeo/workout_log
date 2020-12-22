@@ -30,17 +30,6 @@
 
                     <a href="#" class="btn btn-danger" data-id="{{ $event->id }}" onclick="deletePost(this);" >削除する</a>
                     </form>
-                    {{-- <form method="POST" action="{{ route('events.destroy', ['id' => $event->id ])}}" id="delete_{{ $contact->id}}"> 
-                        @csrf
-                        <a href="#" class="btn btn-danger" data-id="{{ $contact->id }}" onclick="deletePost(this);">削除する</a>
-                    </form> --}}
-                    {{-- <form method="POST" action="{{ url('tweets/' .$tweet->id) }}" class="mb-0">
-                        @csrf
-                        @method('DELETE')
-
-                        <a href="{{ url('tweets/' .$tweet->id .'/edit') }}" class="dropdown-item">編集</a>
-                        <button type="submit" class="dropdown-item del-btn">削除</button>
-                    </form> --}}
                 </div>
             </div>
         </div>

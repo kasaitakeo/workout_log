@@ -44,17 +44,13 @@ class Event extends Model
         return;
     }
 
-    public function getEvents($event_id)
-    {
-        // return $this->Where('user_id',  $user_id)->pluck('event_name');
-        // return $this->Where('id',  $event_ids)->get();
-        // return $this->Where('id',  $event_ids)->pluck('event_name', 'part');
-        return $this->Where('id',  $event_id)->first();
-    }
-
-    public function eventDestroy(Int $user_id, Int $event_id)
-    {
-        return $this->where('user_id', $user_id)->where('id', $event_id)->delete();
-    }
+    // コントローラーで処理かけた
+    // public function getEvents($event_id)
+    // {
+    //     // return $this->Where('user_id',  $user_id)->pluck('event_name');
+    //     // return $this->Where('id',  $event_ids)->get();
+    //     // return $this->Where('id',  $event_ids)->pluck('event_name', 'part');
+    //     return $this->Where('id',  $event_id)->first();
+    // }
 
 }

@@ -19,35 +19,35 @@
                                         @foreach (Session::get('event_datas') as $event_data)
                                             @switch($event_data->part)
                                                 @case('胸')
-                                                    <?php $chestday[] =  $event_data->event_name; ?>
+                                                    {{ $chestday[] =  $event_data->event_name }}
                                                     @break
                                                 
                                                 @case('背中')
-                                                    <?php $backday[] =  $event_data->event_name; ?>
+                                                    {{ $backday[] =  $event_data->event_name }}
                                                     @break
 
                                                 @case('肩')
-                                                    <?php $shoulderday[] =  $event_data->event_name; ?>
+                                                    {{ $shoulderday[] =  $event_data->event_name }}
                                                     @break
 
                                                 @case('脚')
-                                                    <?php $legday[] =  $event_data->event_name; ?>
+                                                    {{ $legday[] =  $event_data->event_name }}
                                                     @break
 
                                                 @case('上腕二頭筋')
-                                                    <?php $bicepsday[] =  $event_data->event_name; ?>
+                                                    {{ $bicepsday[] =  $event_data->event_name }}
                                                     @break
 
                                                 @case('上腕三等筋')
-                                                    <?php $tricepsday[] =  $event_data->event_name; ?>
+                                                    {{ $tricepsday[] =  $event_data->event_name }}
                                                     @break
 
                                                 @case('腹筋')
-                                                    <?php $absday[] =  $event_data->event_name; ?>
+                                                    {{ $absday[] =  $event_data->event_name }}
                                                     @break
 
                                                 @default
-                                                    <?php $day[] =  $event_data->event_name; ?>
+                                                    {{ $day[] =  $event_data->event_name }}
 
                                             @endswitch
                                         @endforeach
@@ -58,7 +58,7 @@
                                                 <form action="sessions" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="event_name" value="{{ $chestday_event }}">
-                                                    <?php echo $chestday_event; ?>
+                                                    {{ $chestday_event }}
                                                     <ul>
                                                         <li>重量：
                                                         <select name="weight">
@@ -85,7 +85,7 @@
                                                         <li>セット数：
                                                         <select name="set">
                                                         @for ($i = 0; $i < 30; $i++)
-                                                            @if ($i === 10) {
+                                                            @if ($i === 1) {
                                                                 <option value="{{ $i }}" selected>{{ $i }}SET</option>
                                                                 @continue;
                                                             @endif
@@ -105,7 +105,7 @@
                                                 <form action="sessions" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="event_name" value="{{ $backday_event }}">
-                                                    <?php echo $backday_event; ?>
+                                                    {{ $backday_event }}
                                                     <ul>
                                                         <li>重量：
                                                         <select name="weight">
@@ -132,7 +132,7 @@
                                                         <li>セット数：
                                                         <select name="set">
                                                         @for ($i = 0; $i < 30; $i++)
-                                                            @if ($i === 10) {
+                                                            @if ($i === 1) {
                                                                 <option value="{{ $i }}" selected>{{ $i }}SET</option>
                                                                 @continue;
                                                             @endif
@@ -152,7 +152,7 @@
                                                 <form action="sessions" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="event_name" value="{{ $shoulderday_event }}">
-                                                    <?php echo $shoulderday_event; ?>
+                                                    {{ $shoulderday_event }}
                                                     <ul>
                                                         <li>重量：
                                                         <select name="weight">
@@ -179,7 +179,7 @@
                                                         <li>セット数：
                                                         <select name="set">
                                                         @for ($i = 0; $i < 30; $i++)
-                                                            @if ($i === 10) {
+                                                            @if ($i === 1) {
                                                                 <option value="{{ $i }}" selected>{{ $i }}SET</option>
                                                                 @continue;
                                                             @endif
@@ -199,7 +199,7 @@
                                                     <form action="sessions" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="event_name" value="{{ $legday_event }}">
-                                                        <?php echo $legday_event; ?>
+                                                        {{ $legday_event }}
                                                         <ul>
                                                             <li>重量：
                                                             <select name="weight">
@@ -226,7 +226,7 @@
                                                             <li>セット数：
                                                             <select name="set">
                                                             @for ($i = 0; $i < 30; $i++)
-                                                                @if ($i === 10) {
+                                                                @if ($i === 1) {
                                                                     <option value="{{ $i }}" selected>{{ $i }}SET</option>
                                                                     @continue;
                                                                 @endif
@@ -246,7 +246,7 @@
                                                     <form action="sessions" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="event_name" value="{{ $bicepsday_event }}">
-                                                        <?php echo $bicepsday_event; ?>
+                                                        {{ $bicepsday_event }}
                                                         <ul>
                                                             <li>重量：
                                                             <select name="weight">
@@ -273,7 +273,7 @@
                                                             <li>セット数：
                                                             <select name="set">
                                                             @for ($i = 0; $i < 30; $i++)
-                                                                @if ($i === 10) {
+                                                                @if ($i === 1) {
                                                                     <option value="{{ $i }}" selected>{{ $i }}SET</option>
                                                                     @continue;
                                                                 @endif
@@ -293,7 +293,7 @@
                                                     <form action="sessions" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="event_name" value="{{ $tricepsday_event }}">
-                                                        <?php echo $tricepsday_event; ?>
+                                                        {{ $tricepsday_event }}
                                                         <ul>
                                                             <li>重量：
                                                             <select name="weight">
@@ -320,7 +320,7 @@
                                                             <li>セット数：
                                                             <select name="set">
                                                             @for ($i = 0; $i < 30; $i++)
-                                                                @if ($i === 10) {
+                                                                @if ($i === 1) {
                                                                     <option value="{{ $i }}" selected>{{ $i }}SET</option>
                                                                     @continue;
                                                                 @endif
@@ -340,7 +340,7 @@
                                                     <form action="sessions" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="event_name" value="{{ $absday_event }}">
-                                                        <?php echo $absday_event; ?>
+                                                        {{ $absday_event }}
                                                         <ul>
                                                             <li>重量：
                                                             <select name="weight">
@@ -367,7 +367,7 @@
                                                             <li>セット数：
                                                             <select name="set">
                                                             @for ($i = 0; $i < 30; $i++)
-                                                                @if ($i === 10) {
+                                                                @if ($i === 1) {
                                                                     <option value="{{ $i }}" selected>{{ $i }}SET</option>
                                                                     @continue;
                                                                 @endif
@@ -387,7 +387,7 @@
                                                      <form action="sessions" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="event_name" value="{{ $other_event }}">
-                                                        <?php echo $other_event; ?>
+                                                        {{ $other_event }}
                                                         <ul>
                                                             <li>重量：
                                                             <select name="weight">
@@ -414,7 +414,7 @@
                                                             <li>セット数：
                                                             <select name="set">
                                                             @for ($i = 0; $i < 30; $i++)
-                                                                @if ($i === 10) {
+                                                                @if ($i === 1) {
                                                                     <option value="{{ $i }}" selected>{{ $i }}SET</option>
                                                                     @continue;
                                                                 @endif
@@ -425,7 +425,7 @@
                                                         </ul>
                                                         <button type="submit" class="btn btn-primary">追加する</button>
                                                     </form>
-                                                    </br>
+                                                </br>
                                                 @endforeach
                                         @endif
                                     @else
@@ -437,7 +437,7 @@
                             <div class="col-md-12">
                                 @if (Session::has('play_datas'))
                                     @foreach (Session::get('play_datas') as $play_data)
-                                        <?php $datas[] = (string)$play_data['event_name'] . '→' .  (string)$play_data['weight'] . 'kg ' . (string)$play_data['rep'] . 'rep ' . (string)$play_data['set'] . 'set'; ?>
+                                        <?php $datas[] = (string)$play_data['event_name'] . '→' .  (string)$play_data['weight'] . 'kg ' . (string)$play_data['rep'] . 'rep ' . (string)$play_data['set'] . 'set' ?>
                                     @endforeach
                                     <form method="POST" action="{{ route('tweets.store') }}">
                                         @csrf
