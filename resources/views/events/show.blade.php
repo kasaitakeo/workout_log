@@ -18,18 +18,29 @@
                     {{ $event->part }}
                     {{ $event->event_name }}
 
-                    {{-- <form method="GET" action="{{ route('events.edit', ['id' => $event->id ])}}"> --}}
                     <form method="GET" action="{{ url('events/' .$event->id. '/edit') }}">
                     @csrf
 
                     <input class="btn btn-info" type="submit" value="変更する">
                     </form>
 
-                    <form method="POST" action="{{ url('events.destroy', ['id' => $event->id ])}}"> 
+                    <form method="POST" action="{{ url('events/' .$event->id)}}" id="delete_{{ $event->id}}"> 
                     @csrf
+                    @method('DELETE')
 
                     <a href="#" class="btn btn-danger" data-id="{{ $event->id }}" onclick="deletePost(this);" >削除する</a>
                     </form>
+                    {{-- <form method="POST" action="{{ route('events.destroy', ['id' => $event->id ])}}" id="delete_{{ $contact->id}}"> 
+                        @csrf
+                        <a href="#" class="btn btn-danger" data-id="{{ $contact->id }}" onclick="deletePost(this);">削除する</a>
+                    </form> --}}
+                    {{-- <form method="POST" action="{{ url('tweets/' .$tweet->id) }}" class="mb-0">
+                        @csrf
+                        @method('DELETE')
+
+                        <a href="{{ url('tweets/' .$tweet->id .'/edit') }}" class="dropdown-item">編集</a>
+                        <button type="submit" class="dropdown-item del-btn">削除</button>
+                    </form> --}}
                 </div>
             </div>
         </div>

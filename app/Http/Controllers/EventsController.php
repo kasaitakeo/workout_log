@@ -149,6 +149,7 @@ class EventsController extends Controller
         $event = Event::find($id);
 
         $event->part = $request->input('part');
+
         $event->event_name = $request->input('event_name');
 
         $event->save();
@@ -162,11 +163,13 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy($id)
     {
-        $user = auth()->user();
-        $event->eventDestroy($user->id, $event->id);
+        $event = Event::find($id);
 
-        return back();
+        $event->delete();
+
+        return redirect('events');      
     }
+
 }
