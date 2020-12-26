@@ -7,7 +7,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'トレログ') }}</title>
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
@@ -78,9 +78,11 @@
                                         <a href="{{ url('users/' .auth()->user()->id) }}" class="dropdown-item">プロフィール</a>
                                         <a href="{{ route('logout') }}" class="dropdown-item"
                                         onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
+                                        document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
                                         </a>
+                                        <a href="{{ route('contact.index') }}" class="dropdown-item">お問い合わせ</a>
+                                        {{-- <a href="{{ url('contact/' .auth()->user()->id) }}" class="dropdown-item">お問い合わせ</a> --}}
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf

@@ -1,6 +1,6 @@
 <?php
 
-// Userは元々app直下にあるのでapp/Modelsに移動してください。その際namespaceを変更するのを忘れずに
+// Userは元々app直下にあるのでapp/Modelsに移動->その際namespaceを変更するのを忘れずに
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -20,7 +20,6 @@ class User extends Authenticatable
      */
     // screen_nameとprofile_imageを追加したので、登録/更新を許可するために$fillable(表示するカラムの選択)の配列にカラムを指定します。
     protected $fillable = [
-        // 'name', 'email', 'password',
         'screen_name',
         'name',
         'profile_image',
@@ -56,7 +55,7 @@ class User extends Authenticatable
     // フォローする
     public function follow(Int $user_id) 
     {
-        // モデルを結びつけている中間テーブルにレコードを挿入することにより、ユーザーに役割を持たせるにはattachメソッドを使います
+        // モデルを結びつけている中間テーブルにレコードを挿入することにより、ユーザーに役割を持たせるにはヘルパメソッドのattachメソッドを使います
         return $this->follows()->attach($user_id);
     }
 

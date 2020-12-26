@@ -1,4 +1,3 @@
-<!-- routeファイルでreturn view('contact.index')でルーティングする -->
 @extends('layouts.app')
 
 @section('content')
@@ -16,7 +15,7 @@
                     @endif
                     <form method="GET" action="{{ route('contact.create') }}">
                     <button type="submit" class="btn btn-primary">
-                        新規登録
+                        新規お問い合わせ作成
                     </button>                  
                     </form>
 
@@ -43,7 +42,7 @@
                         <td>{{ $contact->your_name}}</td>
                         <td>{{ $contact->title}}</td>
                         <td>{{ $contact->created_at}}</td>
-                        <!-- 名前付きルート角括弧の中に連想配列でid渡すことできる -->
+                        {{-- 名前付きルート角括弧の中に連想配列でid渡すことできる --}}
                         <td><a href="{{ route('contact.show', ['id' => $contact->id ]) }}">詳細をみる</a></td>
                         </tr>
                         @endforeach
